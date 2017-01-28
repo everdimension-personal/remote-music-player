@@ -1,0 +1,22 @@
+.Folder {
+  display: block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  transition: background-color .2s;
+
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Folder:hover {
+  background-color: #fafafa;
+}
+
+.Folder__icon {
+  font-size: 3rem;
+  color: #4bbef9;
+}

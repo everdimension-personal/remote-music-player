@@ -1,0 +1,7 @@
+.Entry {
+  border-bottom: 1px solid #ccc;
+}
+
+.Entry:last-child {
+  border-bottom: none;
+}

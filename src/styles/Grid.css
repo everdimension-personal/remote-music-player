@@ -1,0 +1,16 @@
+.Grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Grid--align-center {
+  align-items: center;
+}
+
+.Grid--justify-start {
+  justify-content: flex-start;
+}
+
+.Cell {
+
+}

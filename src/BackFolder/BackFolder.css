@@ -1,0 +1,18 @@
+.BackFolder {
+  display: block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  transition: background-color .2s;
+}
+
+.BackFolder:hover {
+  background-color: #fafafa;
+}
+
+.BackFolder__icon {
+  font-size: 3rem;
+  color: #f0f0f0;
+}
