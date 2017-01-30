@@ -1,5 +1,6 @@
+/* global fetch */
 import React, { PropTypes } from 'react';
-import Icon from '../Icon';
+import Song from '../Song';
 import '../styles/Grid.css';
 import './CurrentSong.css';
 
@@ -7,28 +8,36 @@ const propTypes = {
   isPlaying: PropTypes.bool.isRequired,
 };
 
-function CurrentSong({ isPlaying }) {
-  return (
-    <div className="CurrentSong">
-      <div className="Grid Grid--align-center">
-        <div className="Cell">
-          <button className="no-btn">
-            <Icon id={isPlaying ? 'pause_circle_filled' : 'play_arrow'} />
-          </button>
-          {' '}
-          <span>
-            Artist — Song Name
-          </span>
-        </div>
-        <div className="Cell">
-          <span>
-            0:23
-          </span>
+class CurrentSong extends React.Component {
+  static handlePlayToggle() {
+    fetch('/api/pause', { method: 'POST' });
+  }
 
-        </div>
-      </div>
-    </div>
-  );
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  componentWillMount() {
+    fetch('/api/nowplaying')
+      .then(res => res.json())
+      .then(song => this.setState({
+        song,
+      }));
+  }
+
+  render() {
+    const { song } = this.state;
+    if (!song) {
+      return null;
+    }
+    return (
+      <Song
+        song={song}
+        onPlayToggle={CurrentSong.handlePlayToggle}
+      />
+    );
+  }
 }
 
 CurrentSong.propTypes = propTypes;

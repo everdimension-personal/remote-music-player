@@ -1,71 +1,54 @@
 import React from 'react';
 import Match from 'react-router/Match';
 import CurrentSong from './CurrentSong';
+import Spinner from './Spinner';
 import Tree from './Tree';
 import TreeRouteResolver from './Tree/TreeRouteResolver';
+import PlayerControls from './PlayerControls';
 import './App.css';
-
-const directory = {
-  name: '/',
-  folders: [
-    {
-      name: 'Music',
-      folders: [
-        {
-          name: 'Synth',
-          folders: [
-            {
-              name: 'Some folder',
-            },
-            {
-              name: 'Another folder',
-            },
-          ],
-          files: [
-            {
-              name: 'Track 1',
-            },
-            {
-              name: 'Track 2',
-            },
-          ],
-        },
-        {
-          name: 'Rock',
-          files: [
-            {
-              name: 'Indie mega rock band — A transition from the edge',
-            },
-            {
-              name: 'Rock 2',
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
 
 const ResolvedTree = TreeRouteResolver(Tree);
 
-function App() {
-  return (
-    <div className="App">
-      <CurrentSong />
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-      <br />
-      <br />
+  componentWillMount() {
+    fetch('/api/dirlist') // eslint-disable-line no-undef
+      .then(res => res.json())
+      .then(res => this.setState({
+        directory: res,
+      }));
+  }
 
-      <main>
-        <Match
-          pattern="/*"
-          render={props => (
-            <ResolvedTree {...props} rootDirectory={directory} />
-          )}
-        />
-      </main>
-    </div>
-  );
+  render() {
+    const { directory } = this.state;
+
+    if (!directory) {
+      return <Spinner centered />;
+    }
+
+    return (
+      <div className="App">
+        <CurrentSong />
+        <PlayerControls />
+
+        <br />
+        <br />
+
+        <main>
+          <Match
+            pattern="/*"
+            render={props => (
+              <ResolvedTree {...props} rootDirectory={directory} />
+            )}
+          />
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;

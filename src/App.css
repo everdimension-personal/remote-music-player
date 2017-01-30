@@ -30,6 +30,11 @@ body {
   vertical-align: middle;
 }
 
+.btn-icon:active {
+  background-color: #4bbef9;
+  color: white;
+}
+
 .v-middle {
   vertical-align: middle;
 }

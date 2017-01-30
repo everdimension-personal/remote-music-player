@@ -1,0 +1,20 @@
+.Song {
+  padding: 15px 10px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.Song__content {
+  padding-right: 50px;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Song__duration {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  padding: 5px;
+  background-color: #f5f5f5;
+}
