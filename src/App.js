@@ -1,5 +1,5 @@
 import React from 'react';
-import Match from 'react-router/Match';
+import { Route } from 'react-router-dom';
 import CurrentSong from './CurrentSong';
 import Spinner from './Spinner';
 import Tree from './Tree';
@@ -39,7 +39,7 @@ class App extends React.Component {
         <br />
 
         <main>
-          <Match
+          <Route
             pattern="/*"
             render={props => (
               <ResolvedTree {...props} rootDirectory={directory} />
